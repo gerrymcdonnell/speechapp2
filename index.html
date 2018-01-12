@@ -1,0 +1,107 @@
+
+<!-- this must point to the app in the js module -->
+<html ng-app="app14">
+<head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<!-- Include main CSS -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<title>SpeechApp 2 AngularJS JSON DATA with boostrap</title>
+
+HTTP JSON
+
+<!-- hide the {}whilee loading page -->
+<style>    
+    [ng\:cloak],[ng-cloak], .ng-cloak{
+        display:none;
+    }
+</style>
+
+
+</head>
+<body>
+    
+    
+    
+   
+    <div class="container wrapper" ng-controller="mainCtrl">
+        
+		<h1 class="text-center">SpeechApp 2 AngularJS JSON DATA with boostrap</h1>
+		
+		basic example indexold.html
+		
+            <nav class="navbar navbar-default">
+            <div class="navbar-header">
+            <div class="alert alert-default navbar-brand search-box">
+            <button class="btn btn-primary" ng-show="show_form" ng-click="formToggle()">Add Word <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            </div>
+            <div class="alert alert-default input-group search-box">
+            <span class="input-group-btn">
+            <input type="text" class="form-control" placeholder="Search Word Details Into Database..." ng-model="search_query">
+            </span>
+            </div>
+            </div>
+            </nav>
+            <div class="col-md-6 col-md-offset-3">
+            
+            <!-- Include form template which is used to insert data into database -->
+            <div ng-include src="'templates/addWordform.html'"></div>
+            
+            <!-- Include form template which is used to edit and update data into database -->
+            <div ng-include src="'templates/editWordForm.html'"></div>
+            </div>
+            <div class="clearfix"></div>
+            
+            <!-- Table to show employee detalis -->
+            <div class="table-responsive">
+            <table class="table table-hover">
+            <tr>
+            
+            <th>id</th>
+            <th>word</th>
+            <th>word_syllables</th>
+            <th>fullimgpath</th>
+            <th>created</th>
+
+            
+            <th></th>
+            <th></th>
+            
+            </tr>
+            <tr ng-repeat="w in words.words | filter:search_query"> 
+            
+            
+            <td>
+            <span>{{w.id}}</span></td>
+            <td>{{w.word}}</td>
+            <td>{{w.word_syllables}}</td>
+            <td>{{w.fullimagepath}}</td>
+            <td>{{w.created}}</td>
+            
+            <td>
+            <button class="btn btn-warning" ng-click="editInfo(w)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+            </td>
+            <td>
+
+            <button class="btn btn-danger" ng-click="deleteInfo(w)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+
+            </td>
+            </tr>
+            </table>
+            </div>
+    </div>
+
+
+
+
+    
+    
+    <!-- Include AngularJS library -->
+	<script src="lib/angular/angular.min.js"></script>
+    <script src="js/getjson.js"> </script>
+    <script src="js/jquery/jquery.min.js"> </script>
+    <script src="js/bootstrap.min.js"> </script>
+
+    
+</body>
+
+</html>

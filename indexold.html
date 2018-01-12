@@ -1,0 +1,77 @@
+
+<!-- this must point to the app in the js module -->
+<html ng-app="app14">
+<head>
+        <script src="js/jquery/jquery.min.js"> </script>
+        <script src="js/bootstrap.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<title>AngularJS get JSON DATA</title>
+
+HTTP JSON
+
+<!-- hide the {}whilee loading page -->
+<style>    
+    [ng\:cloak],[ng-cloak], .ng-cloak{
+        display:none;
+    }
+</style>
+
+
+</head>
+
+
+<h3>get JSON via HTTP</h3>
+<body>
+
+    <div ng-controller="mainCtrl">         
+        <button ng-click="getDataTest()">Get data Test</button>
+        {{players}} 
+        
+        <ul>
+            <li ng-repeat ="player in players">
+                {{player.name + " in town " + player.town}}
+            </li>
+        </ul>
+
+
+
+
+        <br><br>
+        <button ng-click="getWords()">get Words</button>
+        <br><br>
+        Results<p></p>
+        <!--{{words}}-->
+
+        <hr>
+        Each item
+        <ul>
+                <li ng-repeat ="w in words.words">
+                    {{w.word}}
+                </li>
+        </ul>
+
+        <hr>
+
+        <br><br>
+        <button ng-click="getJsonTest()">get json test</button>
+        <br><br>
+        Results<p></p>
+        {{results}}
+
+        Each item
+        <ul>
+                <li ng-repeat ="e in results">
+                    {{e.title}}
+                </li>
+        </ul>
+
+    </div>
+    
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="js/getjson.js"> </script>
+
+    
+</body>
+
+</html>
