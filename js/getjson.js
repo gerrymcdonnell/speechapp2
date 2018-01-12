@@ -100,10 +100,14 @@ app14.controller('mainCtrl',function($scope,$http){
 		);
 	}
 	
-	
+	/**
+	send a put request to a url
+	**/
 	$scope.UpdateWord = function(info){
 		
 		var jsonUrl = "http://localhost/cake3restapi/words/"+info.id+".json";
+		
+		console.log(jsonUrl);
 		
 		$http.put(jsonUrl,
 			{
@@ -136,41 +140,14 @@ app14.controller('mainCtrl',function($scope,$http){
             $('#editWordForm').slideToggle();
         }
         
-        /**
-         * post to the script that wukk process the data we posted
-         */
-        /*$scope.UpdateWord = function(info){
-            $http.post('databaseFiles/updateWords.php',
-                {
-                "id":info.id,
-                "word":info.word
-                }
-                ).success(function(data){
-                    $scope.show_form = true;
-                    if (data == true) {
-                        console.log("data="+data);
-						_refreshWords();
-                    }
-            });
-        }*/
+
 
         $scope.updateMsg = function(id){
             $('#editWordForm').css('display', 'none');
         }		
 		
 		
-		/*$scope.insertInfo = function(info){
-		$http.post('databaseFiles/insertWord.php',
-		{
-			"word":info.word,
-			"word_syllables":info.word_syllables
-		}).success(function(data){
-		if (data == true) {
-			_refreshWords();
-			$('#addWordForm').css('display', 'none');
-		}
-		});
-		}*/
+
 		
 		
 		$scope.formToggle =function(){
@@ -179,13 +156,7 @@ app14.controller('mainCtrl',function($scope,$http){
 		}
 		
 		
-		/*$scope.deleteInfo = function(info){
-		$http.post('databaseFiles/deleteWord.php',{"del_id":info.id}).success(function(data){
-		if (data == true) {
-			_refreshWords();
-		}
-		});
-		}*/
+
 				
 		
 		
