@@ -25,23 +25,26 @@ app14.controller('mainCtrl',function($scope,$http){
 		var string = username + ":" + password;
 		// Encode the String
 		var encodedString = btoa(string);
+	
+		base64 encode the username and password
 	*/
 	function _buildHttpBasicAuthString(username,password){
 		return 	 btoa(username + ":" + password);
 	}
 
-
-	
+	//get a list of words from "backend" webapp which provides a REST Service
 	function _refreshWords() {
 		var jsonUrl = "http://localhost/cake3restapi/words/index.json";
 
 		var encodedString=_buildHttpBasicAuthString("gerry","ted");
 
-		$http({
-			method : 'GET',
-			url : jsonUrl,
-			headers: { 'Authorization': 'Basic ' + encodedString }
-		}).then(function successCallback(response) {
+		$http(
+			{
+				method : 'GET',
+				url : jsonUrl,
+				headers: { 'Authorization': 'Basic ' + encodedString}
+			}
+	).then(function successCallback(response) {
 			$scope.words = response.data;
 		}, function errorCallback(response) {
 			console.log(response.statusText);
@@ -58,16 +61,27 @@ app14.controller('mainCtrl',function($scope,$http){
 	works must have a user id
 	//*****************************************************************************
 	*/
-	$scope.insertInfo = function(info){
+	$scope.insertWord = function(info){
 		
 		console.log("insertInfo");
 		
 		var jsonUrl = "http://localhost/cake3restapi/words.json";
-		$http.post(jsonUrl,
+		var encodedString=_buildHttpBasicAuthString("gerry","ted");
+		
+		/*$http.post(jsonUrl,
 		{
 			"word":info.word,
 			"word_syllables":info.word_syllables
-		}).success(function(data){
+		})*/
+		$http(
+			{
+				method : 'POST',
+				data:{"word":info.word, "word_syllables":info.word_syllables},
+				url : jsonUrl,
+				headers: { 'Authorization': 'Basic ' + encodedString}
+			}		
+		)
+		.success(function(data){
 			
 			console.log(data.message);
 			
@@ -82,19 +96,21 @@ app14.controller('mainCtrl',function($scope,$http){
 	//*****************************************************************************
 	//delete record works
 	//*****************************************************************************
-	$scope.deleteInfo = function(info){
+	$scope.deleteWord = function(info){
 		
 		console.log("deleteInfo");
 		
 		var jsonUrl = "http://localhost/cake3restapi/words/"+info.id+".json";
+		var encodedString=_buildHttpBasicAuthString("gerry","ted");		
 		
-		console.log(jsonUrl);
-		
-		$http.delete(jsonUrl,
-		{
-			/*"word":info.word,
-			"word_syllables":info.word_syllables*/
-		}).success(function(data){
+		//and auth login details
+		$http(
+			{
+				method : 'DELETE',
+				url : jsonUrl,
+				headers: { 'Authorization': 'Basic ' + encodedString}
+			}		
+		).success(function(data){
 			
 			console.log(data.message);
 			
@@ -106,21 +122,24 @@ app14.controller('mainCtrl',function($scope,$http){
 		);
 	}
 	
-	/**
-	send a put request to a url
-	**/
+
+	//send a put request to a url	
 	$scope.UpdateWord = function(info){
 		
 		var jsonUrl = "http://localhost/cake3restapi/words/"+info.id+".json";
+		var encodedString=_buildHttpBasicAuthString("gerry","ted");	
 		
 		console.log(jsonUrl);
-		
-		$http.put(jsonUrl,
+
+		$http(
 			{
-			"id":info.id,
-			"word":info.word
-			}
-			).success(function(data){
+				method : 'PUT',
+				data:{"id":info.id,"word":info.word, "word_syllables":info.word_syllables},
+				url : jsonUrl,
+				headers: { 'Authorization': 'Basic ' + encodedString}
+			}		
+		)		
+		.success(function(data){
 				$scope.show_form = true;
 				if (data == true) {
 					console.log("data="+data);
@@ -128,6 +147,31 @@ app14.controller('mainCtrl',function($scope,$http){
 				}
 		});
     }
+
+
+
+
+	
+	//send a put request to a url	
+	/*$scope.UpdateWord = function(info){
+		
+		var jsonUrl = "http://localhost/cake3restapi/words/"+info.id+".json";
+		
+		console.log(jsonUrl);
+		
+		$http.put(jsonUrl,
+		{
+			"id":info.id,
+			"word":info.word
+		}
+		).success(function(data){
+				$scope.show_form = true;
+				if (data == true) {
+					console.log("data="+data);
+					_refreshWords();
+				}
+		});
+    }*/
 	
 	
 	

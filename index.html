@@ -76,22 +76,22 @@ HTTP JSON
             <th></th>
             
             </tr>
-            <tr ng-repeat="w in words.words | filter:search_query"> 
+            <tr ng-repeat="w in words.words | filter:search_query" > 
             
             
             <td>
             <span>{{w.id}}</span></td>
-            <td>{{w.word}}</td>
+            <td ng-click="editInfo(w)">{{w.word}}</td>
             <td>{{w.word_syllables}}</td>
             <td>{{w.fullimagepath}}</td>
             <td>{{w.created}}</td>
             
             <td>
-            <button class="btn btn-warning" ng-click="editInfo(w)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn btn-warning" ng-click="editWord(w)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
             </td>
             <td>
 
-            <button class="btn btn-danger" ng-click="deleteInfo(w)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+            <button class="btn btn-danger" ng-click="deleteWord(w)" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>
 
             </td>
             </tr>
