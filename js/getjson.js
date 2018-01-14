@@ -16,30 +16,26 @@ app14.controller('mainCtrl',function($scope,$http){
 	}*/	
 	
 
-    //get words from json service
-	/*function _refreshWords(){
-        var jsonUrl = "http://localhost/cake3restapi/words/index.json";
-        $http.get(jsonUrl).success(
-            function(data){
-              console.log(data);
-              $scope.words = data;
-            }
-          );
-    }*/
 	
-	
-	
-	function _refreshWords() {
-		var jsonUrl = "http://localhost/cake3restapi/words/index.json";
-
+	//build auth header string
+	/*
 		username="gerry";
 		password="ted";
-
 		// Define the string
 		var string = username + ":" + password;
 		// Encode the String
 		var encodedString = btoa(string);
+	*/
+	function _buildHttpBasicAuthString(username,password){
+		return 	 btoa(username + ":" + password);
+	}
 
+
+	
+	function _refreshWords() {
+		var jsonUrl = "http://localhost/cake3restapi/words/index.json";
+
+		var encodedString=_buildHttpBasicAuthString("gerry","ted");
 
 		$http({
 			method : 'GET',
