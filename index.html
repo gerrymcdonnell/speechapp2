@@ -68,7 +68,6 @@ HTTP JSON
             <th>id</th>
             <th>word</th>
             <th>word_syllables</th>
-            <th>fullimgpath</th>
             <th>created</th>
 
             
@@ -83,11 +82,10 @@ HTTP JSON
             <span>{{w.id}}</span></td>
             <td ng-click="editInfo(w)">{{w.word}}</td>
             <td>{{w.word_syllables}}</td>
-            <td>{{w.fullimagepath}}</td>
             <td>{{w.created}}</td>
             
             <td>
-            <button class="btn btn-warning" ng-click="editWord(w)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn btn-warning" ng-click="editInfo(w)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
             </td>
             <td>
 

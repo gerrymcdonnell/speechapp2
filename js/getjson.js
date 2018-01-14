@@ -56,23 +56,13 @@ app14.controller('mainCtrl',function($scope,$http){
 	/*
 	read https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
 	*/
-	
-	/*****************************************************************************
-	works must have a user id
-	//*****************************************************************************
-	*/
-	$scope.insertWord = function(info){
+	$scope.addWord = function(info){
 		
 		console.log("insertInfo");
 		
 		var jsonUrl = "http://localhost/cake3restapi/words.json";
 		var encodedString=_buildHttpBasicAuthString("gerry","ted");
-		
-		/*$http.post(jsonUrl,
-		{
-			"word":info.word,
-			"word_syllables":info.word_syllables
-		})*/
+
 		$http(
 			{
 				method : 'POST',
@@ -152,28 +142,7 @@ app14.controller('mainCtrl',function($scope,$http){
 
 
 	
-	//send a put request to a url	
-	/*$scope.UpdateWord = function(info){
-		
-		var jsonUrl = "http://localhost/cake3restapi/words/"+info.id+".json";
-		
-		console.log(jsonUrl);
-		
-		$http.put(jsonUrl,
-		{
-			"id":info.id,
-			"word":info.word
-		}
-		).success(function(data){
-				$scope.show_form = true;
-				if (data == true) {
-					console.log("data="+data);
-					_refreshWords();
-				}
-		});
-    }*/
-	
-	
+
 	
 	
 		//*****************************************************************************
