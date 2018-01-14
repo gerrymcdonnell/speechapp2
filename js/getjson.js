@@ -31,9 +31,20 @@ app14.controller('mainCtrl',function($scope,$http){
 	
 	function _refreshWords() {
 		var jsonUrl = "http://localhost/cake3restapi/words/index.json";
+
+		username="gerry";
+		password="ted";
+
+		// Define the string
+		var string = username + ":" + password;
+		// Encode the String
+		var encodedString = btoa(string);
+
+
 		$http({
 			method : 'GET',
-			url : jsonUrl
+			url : jsonUrl,
+			headers: { 'Authorization': 'Basic ' + encodedString }
 		}).then(function successCallback(response) {
 			$scope.words = response.data;
 		}, function errorCallback(response) {
@@ -67,8 +78,7 @@ app14.controller('mainCtrl',function($scope,$http){
 			_refreshWords();				
 			$('#addWordForm').css('display', 'none');
 			
-		}
-		
+		}		
 		);
 	}
 	
