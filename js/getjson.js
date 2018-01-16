@@ -1,7 +1,7 @@
 //define the angular js module (modulename)
-var app14=angular.module('app14',[]);
+var app1=angular.module('app1',[]);
 
-app14.controller('mainCtrl',function($scope,$http){ 
+app1.controller('mainCtrl',function($scope,$http){ 
     
     //as soon as app starts call get words
     _refreshWords();
@@ -150,9 +150,10 @@ app14.controller('mainCtrl',function($scope,$http){
 		//*****************************************************************************
 		
 		// Enabling show_form variable to enable Add employee button
-		$scope.show_form = true;
-		
+		$scope.show_form = true;		
 		$scope.currentWord = {};
+
+		//shows the edit form
 		$scope.editInfo = function(info){
             $scope.currentWord = info;
             $('#addWordForm').slideUp();
