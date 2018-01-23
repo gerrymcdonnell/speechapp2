@@ -41,8 +41,8 @@ app1.controller('mainCtrl',function($scope,$http){
 		$http(
 			{
 				method : 'GET',
-				url : jsonUrl,
-				headers: { 'Authorization': 'Basic ' + encodedString}
+				url : jsonUrl/*,
+				headers: { 'Authorization': 'Basic ' + encodedString}*/
 			}
 	).then(function successCallback(response) {
 			$scope.words = response.data;
@@ -117,16 +117,18 @@ app1.controller('mainCtrl',function($scope,$http){
 	$scope.UpdateWord = function(info){
 		
 		var jsonUrl = "http://localhost/cake3restapi/words/"+info.id+".json";
-		var encodedString=_buildHttpBasicAuthString("gerry","ted");	
+		//var encodedString=_buildHttpBasicAuthString("gerry","ted");	
 		
 		console.log(jsonUrl);
 
 		$http(
 			{
 				method : 'PUT',
-				data:{"id":info.id,"word":info.word, "word_syllables":info.word_syllables},
-				url : jsonUrl,
-				headers: { 'Authorization': 'Basic ' + encodedString}
+				data:{"id":info.id,
+				"wordtitle":info.word, 
+				"word_syllables":info.word_syllables},
+				url : jsonUrl/*,
+				headers: { 'Authorization': 'Basic ' + encodedString}*/
 			}		
 		)		
 		.success(function(data){
