@@ -69,7 +69,7 @@ HTTP JSON
             <th>wordtitle</th>
             <th>word_syllables</th>
             <th>created</th>
-
+			<th>modified</th>
             
             <th></th>
             <th></th>
@@ -83,7 +83,8 @@ HTTP JSON
             <td ng-click="editInfo(w)">{{w.wordtitle}}</td>
             <td>{{w.word_syllables}}</td>
             <td>{{w.created}}</td>
-            
+            <td>{{w.modified}}</td>
+			
             <td>
             <button class="btn btn-warning" ng-click="editInfo(w)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
             </td>
